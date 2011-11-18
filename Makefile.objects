@@ -1,0 +1,10 @@
+jsmin.lo: /home/andreas/Downloads/php-5.4.0RC1/ext/jsmin/jsmin.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/andreas/Downloads/php-5.4.0RC1/ext/jsmin $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/andreas/Downloads/php-5.4.0RC1/ext/jsmin/jsmin.c -o jsmin.lo 
+jsminify.lo: /home/andreas/Downloads/php-5.4.0RC1/ext/jsmin/jsminify.c
+	$(LIBTOOL) --mode=compile $(CC)  -I. -I/home/andreas/Downloads/php-5.4.0RC1/ext/jsmin $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -c /home/andreas/Downloads/php-5.4.0RC1/ext/jsmin/jsminify.c -o jsminify.lo 
+$(phplibdir)/jsmin.la: ./jsmin.la
+	$(LIBTOOL) --mode=install cp ./jsmin.la $(phplibdir)
+
+./jsmin.la: $(shared_objects_jsmin) $(JSMIN_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --mode=link $(CC) $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS) -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_jsmin) $(JSMIN_SHARED_LIBADD)
+
